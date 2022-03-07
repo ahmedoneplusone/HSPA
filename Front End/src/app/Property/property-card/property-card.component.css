@@ -8,7 +8,7 @@
   transition-duration: 250ms;
   transition-timing-function: ease-out;
   height: 250px;
-  width: 250px;
+  width: auto;
   opacity: .8;
 }
 
