@@ -1,4 +1,4 @@
-import { IProperty } from './../IProperty.interface';
+import { IProperty } from '../../model/IProperty.interface';
 import { Component, Input } from "@angular/core";
 
 @Component({

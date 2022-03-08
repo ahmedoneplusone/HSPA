@@ -1,62 +1,58 @@
+<div class="row my-4">
+  <div class="col-6 m-auto">
+  <div class="card m-auto">
+    <div class="card-header">
+      Add new property
+    </div>
+    <div class="card-body">
 
-<div class="card">
-  <div class="card-header">
-    Add New Property
-  </div>
-
-  <div class="card-body">
-
-    <form (ngSubmit)="OnSubmit()" #Form="ngForm">
+    <form [formGroup]="addPropForm" (ngSubmit)="OnSubmit()">
 
       <div class="form-group col-12 my-2">
         <label for="name">Name</label>
-        <input type="text" class="form-control"
-        #propName="ngModel" ngModel name="Name"
-        required minlength="5" maxlength="100">
+        <input type="text" class="form-control" formControlName="propName">
 
-        <span *ngIf="!propName.valid && propName.touched" class="error-block">
-         <span *ngIf="propName.hasError('required')">Name is Required</span>
-         <span *ngIf="propName.hasError('minlength')">Name must be at least 5 char long</span>
-         <span *ngIf="propName.hasError('maxlength')">Name must have a maximum of 100 char long</span>
+        <span *ngIf="!GetPropName.valid && GetPropName.touched" class="error-block">
+         <span *ngIf="GetPropName.hasError('required')">Name is Required</span>
+         <span *ngIf="GetPropName.hasError('minlength')">Name must be at least 5 chars long</span>
+         <span *ngIf="GetPropName.hasError('maxlength')">Name must have a maximum of 50 chars long</span>
         </span>
 
       </div>
 
       <div class="form-group col-12 my-2">
         <label for="Type">Type</label>
-        <input type="text" class="form-control"
-        #propType="ngModel" ngModel name="Type"
-        required minlength="2" maxlength="100">
+        <input type="text" class="form-control" formControlName="propType">
 
-        <span *ngIf="!propType.valid && propType.touched" class="error-block">
-          <span *ngIf="propType.hasError('required')">Type is Required</span>
-          <span *ngIf="propType.hasError('minlength')">Type must be at least 2 char long</span>
-          <span *ngIf="propType.hasError('maxlength')">Type must have a maximum of 100 char long</span>
+        <span *ngIf="!GetPropType.valid && GetPropType.touched" class="error-block">
+          <span *ngIf="GetPropType.hasError('required')">Type is Required</span>
+          <span *ngIf="GetPropType.hasError('minlength')">Type must be at least 5 chars long</span>
+          <span *ngIf="GetPropType.hasError('maxlength')">Type must have a maximum of 50 chars long</span>
         </span>
 
       </div>
 
       <div class="form-group col-12 my-2">
         <label for="Price">Price</label>
-        <input type="text" class="form-control"
-        #propPrice="ngModel" ngModel name="Price"
-        required minlength="3" maxlength="10">
+        <input type="text" class="form-control" formControlName="propPrice">
 
-        <span *ngIf="!propPrice.valid && propPrice.touched" class="error-block">
-          <span *ngIf="propPrice.hasError('required')">Price is Required</span>
-          <span *ngIf="propPrice.hasError('minlength')">Price must be at least above 100 EGP</span>
-          <span *ngIf="propPrice.hasError('maxlength')">Type must have a maximum of one trillion EGP</span>
+        <span *ngIf="!GetPropPrice.valid && GetPropPrice.touched" class="error-block">
+          <span *ngIf="GetPropPrice.hasError('required')">Price is Required</span>
+          <span *ngIf="GetPropPrice.hasError('minlength')">Price must be at least above 100 EGP</span>
+          <span *ngIf="GetPropPrice.hasError('maxlength')">Type must have a maximum of one trillion EGP</span>
         </span>
 
       </div>
 
-      <div class="form-group col-12 mt-3">
-        <button [disabled]="!Form.valid" type="submit" class="btn btn-primary">Save</button>
+
+      <div class="form-group col-12 my-3">
+        <button type="submit" class="btn btn-primary">Save</button>
         <button type="reset" class="btn btn-danger mx-2">Cancel</button>
       </div>
 
     </form>
 
   </div>
-
+</div>
+</div>
 </div>

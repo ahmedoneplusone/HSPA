@@ -1,3 +1,8 @@
+import { AuthService } from './services/auth.service';
+import { AlertifyService } from './services/alertify.service';
+import { UserService } from './services/user.service';
+import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AddPropertyComponent } from './Property/add-property/add-property.component';
 import { HousingService } from './services/housing.service';
 import { NgModule, Component } from '@angular/core';
@@ -9,7 +14,10 @@ import { PropertyListComponent } from './Property/property-list/property-list.co
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Routes,RouterModule } from '@angular/router';
 import { PropertyDetailComponent } from './Property/property-detail/property-detail.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 const appRoutes: Routes = [
 
@@ -17,6 +25,8 @@ const appRoutes: Routes = [
   {path:'rent-property',component: PropertyListComponent},
   {path:'property-detail/:id',component: PropertyDetailComponent},
   {path:'add-property',component: AddPropertyComponent},
+  {path:'user-login',component: UserLoginComponent},
+  {path:'user-register',component: UserRegisterComponent},
   {path:'**',component: PropertyListComponent}
 ]
 
@@ -27,15 +37,20 @@ const appRoutes: Routes = [
     PropertyListComponent,
       NavBarComponent,
       AddPropertyComponent,
-      PropertyDetailComponent
+      PropertyDetailComponent,
+      UserLoginComponent,
+      UserRegisterComponent
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
-  providers: [HousingService],
+  providers: [HousingService,UserService,AlertifyService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

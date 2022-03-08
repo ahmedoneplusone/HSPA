@@ -1,4 +1,4 @@
-import { IProperty } from './../Property/IProperty.interface';
+import { IProperty } from '../model/IProperty.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
@@ -23,4 +23,17 @@ export class HousingService {
       })
       );
   }
+
+  addProperty(property:IProperty){
+    let properties = [];
+  if(localStorage.getItem('Properties')){
+    properties = JSON.parse(localStorage.getItem('Properties'));
+    properties = [property, ...properties];
+    console.log(properties);
+  }else{
+    properties = [property];
+  }
+  localStorage.setItem('Users',JSON.stringify(properties));
+}
+
 }

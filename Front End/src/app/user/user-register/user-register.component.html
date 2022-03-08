@@ -1,0 +1,109 @@
+<div class="row my-4">
+  <div class="col-6 m-auto">
+  <div class="card m-auto">
+    <div class="card-header">
+      Register
+    </div>
+    <div class="card-body">
+      <form [formGroup]="registerationForm" (ngSubmit)="OnSubmit()">
+        <div class="form-group col-12 my-2">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="userName" >
+
+          <span class="error-block" *ngIf="!GetUserName.valid && GetUserName.touched">
+            <span *ngIf="GetUserName.hasError('required')">
+                Name is required
+            </span>
+            <span *ngIf="GetUserName.hasError('minlength')">
+              Name must be at least 4 chars long
+            </span>
+            <span *ngIf="GetUserName.hasError('maxlength')">
+              Name must have a maximum of 50 chars
+            </span>
+          </span>
+
+        </div>
+
+        <div class="form-group col-12 my-2">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email">
+
+          <span class="error-block" *ngIf="!GetEmail.valid && GetEmail.touched">
+            <span *ngIf="GetEmail.hasError('required')">
+                Email is required
+            </span>
+            <span *ngIf="GetEmail.hasError('email')">
+              Please enter a valid email
+            </span>
+          </span>
+
+        </div>
+
+        <div class="form-group col-12 my-2">
+          <label for="passwrod" class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+
+          <span class="error-block" *ngIf="!GetPassword.valid && GetPassword.touched">
+            <span *ngIf="GetPassword.hasError('required')">
+              Password is required
+            </span>
+            <span *ngIf="GetPassword.hasError('minlength')">
+              Password must be at least 8 chars long
+            </span>
+            <span *ngIf="GetPassword.hasError('maxlength')">
+              Password must have a maximum of 100 chars
+            </span>
+          </span>
+
+        </div>
+
+        <div class="form-group col-12 my-2">
+          <label for="cpassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" formControlName="confirmPassword">
+
+          <span class="error-block" *ngIf="!GetConfirmPassword.valid && GetConfirmPassword.touched">
+            <span *ngIf="GetConfirmPassword.hasError('required')">
+              Confirm Password is required
+            </span>
+
+            <span *ngIf="GetConfirmPassword.hasError('minlength')">
+              Password must be at least 8 chars long
+            </span>
+            <span *ngIf="GetConfirmPassword.hasError('maxlength')">
+              Password must have a maximum of 100 chars
+            </span>
+          </span>
+          <span class="error-block" *ngIf="registerationForm.hasError('notMatched') && GetConfirmPassword.valid">
+            Passwords doesn't match
+          </span>
+
+        </div>
+
+        <div class="form-group col-12 my-2">
+          <label for="mobile" class="form-label">Mobile</label>
+          <input type="tel" class="form-control" formControlName="mobile">
+
+          <span class="error-block" *ngIf="!GetMobile.valid && GetMobile.touched">
+            <span *ngIf="GetMobile.hasError('required')">
+                Mobile phone number is required
+            </span>
+            <span *ngIf="GetMobile.hasError('minlength')">
+              Phone number must be at least 8 numbers long
+            </span>
+            <span *ngIf="GetMobile.hasError('maxlength')">
+              Phone number must have a maximum of 16 numbers
+            </span>
+          </span>
+
+        </div>
+
+        <div class="form-group col-12 my-3">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="reset" class="btn btn-danger mx-2">Cancel</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  </div>
+</div>

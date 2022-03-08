@@ -1,3 +1,4 @@
+import { AlertifyService } from './../services/alertify.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  loggedinUser: string;
+  constructor(private AlertifyService:AlertifyService) { }
 
   ngOnInit() {
   }
 
+  loggedIn(){
+    this.loggedinUser = localStorage.getItem('token');
+    return this.loggedinUser;
+  }
+
+  OnLogOut(){
+    localStorage.removeItem('token');
+    this.AlertifyService.success("You Are Logged Out !");
+  }
 }
