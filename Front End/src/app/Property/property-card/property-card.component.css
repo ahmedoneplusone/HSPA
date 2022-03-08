@@ -7,7 +7,7 @@
   transform: scale(1.1,1.1);
   transition-duration: 250ms;
   transition-timing-function: ease-out;
-  height: 250px;
+  height: 200px;
   width: auto;
   opacity: .8;
 }
@@ -16,7 +16,7 @@
   transform: scale(1,1);
   transition-duration: 250ms;
   transition-timing-function: ease-out;
-  height: 250px;
+  height: 200px;
   width: auto;
 
 }

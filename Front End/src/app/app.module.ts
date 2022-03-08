@@ -9,6 +9,7 @@ import { PropertyListComponent } from './Property/property-list/property-list.co
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Routes,RouterModule } from '@angular/router';
 import { PropertyDetailComponent } from './Property/property-detail/property-detail.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
 
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [HousingService],
   bootstrap: [AppComponent]
