@@ -1,3 +1,4 @@
+
 export interface IProperty{
   ID:number;
   SellRent:number;
