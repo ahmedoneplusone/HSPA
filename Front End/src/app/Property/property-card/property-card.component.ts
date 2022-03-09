@@ -10,6 +10,6 @@ import { Component, Input } from "@angular/core";
 
 export class PropertyCardComponent{
   @Input() property:IProperty
-
+  @Input() hideIcons:boolean
 
 }

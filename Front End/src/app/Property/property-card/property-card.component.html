@@ -4,7 +4,7 @@
   <img *ngIf="property.Image" class="card-img-top" src="assets/Images/{{property.Image}}.jfif">
   <img *ngIf="!property.Image" class="card-img-top" src="assets/Images/House_Default.png">
 
-    <ul class="list-inline  member-icons animate">
+    <ul *ngIf="!hideIcons" class="list-inline  member-icons animate">
       <li class="list-inline-item">
         <button class="btn btn-primary" routerLink="/property-detail/{{property.ID}}"><i class="fa-solid fa-pen-to-square"></i></button>
       </li>
@@ -16,7 +16,7 @@
 
   <div class="card-body p-2  ">
 <h1>{{property.Name}}</h1>
-<h2>{{property.Type}}</h2>
+<h2>{{property.PType}}</h2>
 <h3>{{property.Price}}</h3>
 </div>
 </div>

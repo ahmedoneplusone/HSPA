@@ -1,9 +1,10 @@
-import { IProperty } from './../../model/IProperty.interface';
+ import { IProperty } from '../../model/IProperty.interface';
 import { AlertifyService } from './../../services/alertify.service';
 import { HousingService } from './../../services/housing.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup ,FormControl,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-add-property',
@@ -11,8 +12,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-property.component.css']
 })
 export class AddPropertyComponent implements OnInit {
+  @ViewChild('formTabs') formTabs:TabsetComponent;
   addPropForm:FormGroup;
   prop: IProperty;
+
+  propertyTypes: Array<string> = ['House','Apartment','Duplex']
+  furnishTypes: Array<string> = ['Fully','Semi','Unfurnished']
+
+  propertyView:IProperty ={
+    ID:null,
+    Name:'',
+    Price:null,
+    SellRent:null,
+    FType:null,
+    PType:null,
+    BHK:null,
+    City:null,
+    BuiltArea:null,
+    RTM:null,
+    Description:null
+  };
+
   constructor(private router:Router,private HousingService:HousingService,private AlertifyService:AlertifyService) { }
 
   ngOnInit() {
@@ -40,5 +60,10 @@ export class AddPropertyComponent implements OnInit {
 
   }
 
+  selectTab(tabId: number) {
+    if (this.formTabs?.tabs[tabId]) {
+      this.formTabs.tabs[tabId].active = true;
+    }
+  }
 
 }

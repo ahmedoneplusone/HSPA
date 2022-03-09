@@ -1,13 +1,15 @@
-
+.card{
+  min-height: 400px;
+}
 .card-img-wrapper{
   overflow: hidden;
   position: relative;
  }
 .card:hover img {
-  transform: scale(1.1,1.1);
+   transform: scale(1.1,1.1);
   transition-duration: 250ms;
   transition-timing-function: ease-out;
-  height: 200px;
+  height: 300px;
   width: auto;
   opacity: .8;
 }
@@ -16,7 +18,7 @@
   transform: scale(1,1);
   transition-duration: 250ms;
   transition-timing-function: ease-out;
-  height: 200px;
+  height: 300px;
   width: auto;
 
 }
