@@ -2,7 +2,7 @@ import { AlertifyService } from './../../services/alertify.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IUser } from '../../model/IUser.interface';
+import { IUser } from '../../model/IUser';
 
 @Component({
   selector: 'app-user-register',

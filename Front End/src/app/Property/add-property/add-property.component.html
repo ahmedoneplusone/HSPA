@@ -6,16 +6,16 @@
     </div>
     <div class="card-body">
 
-    <form [formGroup]="addPropForm" (ngSubmit)="OnSubmit()">
-      <div class="tab-panel">
+    <form [formGroup]="addPropForm" (ngSubmit)="OnSubmit()" >
+      <div  class="tab-panel pb-5">
         <tabset #formTabs class="member-tabset"><br/>
 
-          <tab heading="Basic Info"  >
+          <tab heading="Basic Info">
 
             <div class="form-group col-12 my-2">
 
             <p>I want to </p>
-            <div class="btn-group" btnRadioGroup>
+            <div class="btn-group" btnRadioGroup >
 
               <label *ngFor="let sr of ['Sell','Rent']" class="btn btn-outline-primary"
               btnRadio="{{sr}}" tabindex="0" role="button" name="SellRent">{{sr}}</label>
@@ -26,7 +26,8 @@
           <div class="form-group col-12 my-2">
 
             <p>BHK</p>
-            <div class="btn-group" btnRadioGroup>
+            <div class="btn-group" btnRadioGroup
+            >
 
               <label *ngFor="let bhk of [1,2,3,4,5,6]" class="btn btn-outline-primary"
               btnRadio="{{bhk}}" tabindex="0" role="button" name="BHK">{{bhk}}</label>
@@ -37,8 +38,8 @@
           <div class="form-group col-12 my-2">
 
             <p>Property Type</p>
-            <div class="btn-group" btnRadioGroup formControlName="propType"
-            [(ngModel)]="propertyView.PType">
+            <div class="btn-group" btnRadioGroup
+            >
 
               <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary"
               btnRadio="{{ptype}}" tabindex="0" role="button" name="PropertyTypes">{{ptype}}</label>
@@ -49,12 +50,15 @@
           <div class="form-group col-12 my-2">
 
             <p>Furnishing Type</p>
-            <div class="btn-group" btnRadioGroup>
+            <div class="btn-group" btnRadioGroup
+
+       >
 
               <label *ngFor="let ftype of furnishTypes" class="btn btn-outline-primary"
               btnRadio="{{ftype}}" tabindex="0" role="button" name="FurnishTypes">{{ftype}}</label>
 
             </div>
+
           </div>
 
           <br/>
@@ -62,7 +66,7 @@
       <div class="form-group col-12 my-2">
 
         <label for="name">In Building/Society/Project</label>
-        <input type="text" class="form-control" [(ngModel)]="propertyView.Name" formControlName="propName">
+        <input type="text" class="form-control" >
 
         <span *ngIf="!GetPropName.valid && GetPropName.touched" class="error-block">
          <span *ngIf="GetPropName.hasError('required')">Name is Required</span>
@@ -74,9 +78,16 @@
 
       <div class="form-group col-12 my-2">
         <label >City</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control"
+
+        >
 
 
+        <span *ngIf="!GetCity.valid && GetCity.touched" class="error-block">
+          <span *ngIf="GetCity.hasError('required')">City is Required</span>
+          <span *ngIf="GetCity.hasError('minlength')">City must be at least 3 chars long</span>
+          <span *ngIf="GetCity.hasError('maxlength')">City must have a maximum of 25 chars long</span>
+         </span>
       </div>
 
 
@@ -92,8 +103,8 @@
           <tab heading="Pricing and Area">
             <div class="form-group col-12">
               <label>Price (in EGP)</label>
-              <input type="text" class="form-control" formControlName="propPrice"
-              [(ngModel)]="propertyView.Price">
+              <input type="text" class="form-control"
+            >
             </div>
 
             <div class="form-group col-12">
@@ -108,7 +119,8 @@
 
             <div class="form-group col-12">
               <label>Built Area (in Sqr Feet)</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"
+             >
             </div>
 
             <div class="form-group col-12">
@@ -237,6 +249,7 @@
 
 
       </div>
+
     </form>
 
   </div>

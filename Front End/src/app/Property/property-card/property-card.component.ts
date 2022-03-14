@@ -1,4 +1,4 @@
-import { IProperty } from '../../model/IProperty.interface';
+import { IPropertyBase } from './../../model/IPropertyBase';
 import { Component, Input } from "@angular/core";
 
 @Component({
@@ -8,8 +8,16 @@ import { Component, Input } from "@angular/core";
 })
 
 
+
 export class PropertyCardComponent{
-  @Input() property:IProperty
+  @Input() property:IPropertyBase
   @Input() hideIcons:boolean
 
-}
+  numberWithCommas(PropPrice: any) {
+    if(PropPrice){
+    return PropPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    }
+  }
+
+

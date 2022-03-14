@@ -1,4 +1,4 @@
-import { IProperty } from '../model/IProperty.interface';
+import { IProperty } from '../model/IProperty';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';

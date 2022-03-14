@@ -1,4 +1,4 @@
-import { IUser } from './../model/IUser.interface';
+import { IUser } from '../model/IUser';
 import { Injectable } from '@angular/core';
 
 @Injectable({

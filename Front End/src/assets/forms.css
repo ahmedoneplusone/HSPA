@@ -11,10 +11,13 @@
 }
 
 .card-header > h1,.card-header > h2,.card-header > h3{
-color: white;
+color: rgb(30, 115, 220);
 }
+
+/*
 .card-header{
   height: 42px;
   padding: 4px 10px !important;
-  background-color: #007bff !important;
+
 }
+*/

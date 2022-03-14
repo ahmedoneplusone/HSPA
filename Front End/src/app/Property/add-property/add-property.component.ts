@@ -1,4 +1,4 @@
- import { IProperty } from '../../model/IProperty.interface';
+ import { IProperty } from '../../model/IProperty'
 import { AlertifyService } from './../../services/alertify.service';
 import { HousingService } from './../../services/housing.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -14,9 +14,8 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 export class AddPropertyComponent implements OnInit {
   @ViewChild('formTabs') formTabs:TabsetComponent;
   addPropForm:FormGroup;
-  prop: IProperty;
 
-  propertyTypes: Array<string> = ['House','Apartment','Duplex']
+  propertyTypes: Array<string> = ['House','Apartment','Villa','Duplex']
   furnishTypes: Array<string> = ['Fully','Semi','Unfurnished']
 
   propertyView:IProperty ={
@@ -38,9 +37,16 @@ export class AddPropertyComponent implements OnInit {
   ngOnInit() {
     this.addPropForm = new FormGroup({
       propName: new FormControl(null,[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
-      propType: new FormControl(null,[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
-      propPrice: new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10)])
+      propPType: new FormControl(null,[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
+      propPrice: new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
+      propBHK: new FormControl(null,[Validators.required]),
+      propFType: new FormControl(null,[Validators.required]),
+      propCity: new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(25)]),
+      propBuiltArea: new FormControl(null,[Validators.required,Validators.minLength(2),Validators.maxLength(25)]),
+      propSellRent: new FormControl(null,[Validators.required])
+
     })
+
   }
 
   get GetPropName(){
@@ -51,6 +57,9 @@ export class AddPropertyComponent implements OnInit {
   }
   get GetPropPrice(){
     return this.addPropForm.get('propPrice') as FormControl
+  }
+  get GetCity(){
+    return this.addPropForm.get('propCity') as FormControl
   }
 
 
