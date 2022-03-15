@@ -1,6 +1,16 @@
 .card{
   min-height: 400px;
 }
+.card-body h1 {
+  font-size: xx-large;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: rgb(41, 196, 248);
+}
+.font-highlight{
+  font-style: italic;
+  color: rgb(41, 196, 248);
+}
 .card-img-wrapper{
   overflow: hidden;
   position: relative;
