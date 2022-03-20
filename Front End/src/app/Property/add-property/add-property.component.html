@@ -8,7 +8,7 @@
         <form (ngSubmit)='onSubmit()' [formGroup]="addPropertyForm">
           <div class="tab-panel">
             <tabset class="member-tabset" #formTabs>
-              <tab heading="Basic Info" formGroupName="BasicInfo" >
+              <tab class="pb-3" heading="Basic Info"  formGroupName="BasicInfo" >
                   <div class="form-group col-12">
                   <p>I want to</p>
                     <div class="btn-group" btnRadioGroup  formControlName="SellRent">
@@ -17,23 +17,30 @@
                       <label class="btn btn-outline-primary"
                       btnRadio=2  tabindex="0" role="button" name="SellRent">Rent</label>
                     </div>
+                    <div class="error-block" *ngIf="SellRent.invalid && nextClicked[0]">
+                      Please Select Sell or Rent
+                    </div>
                   </div>
 
-                  <div class="form-group col-12">
+                  <div class="form-group col-12 mt-3">
                     <p>BHK</p>
                       <div class="btn-group" btnRadioGroup
                       [(ngModel)]="propertyView.BHK"
-                      [ngModelOptions]="{standalone: true}"
+                      formControlName="BHK"
+
                       name="BHK">
                         <label
-                        *ngFor="let bhk of [1,2,3,4]"
+                        *ngFor="let bhk of [1,2,3,4,5,6]"
                         class="btn btn-outline-primary mr-2"
-                        btnRadio="{{bhk}}" tabindex="0" role="button" name="BHK">{{bhk}}</label>
+                        btnRadio={{bhk}} tabindex="0" role="button" name="BHK">{{bhk}}</label>
+                      </div>
+                      <div class="error-block" *ngIf="BHK.invalid && nextClicked[0]">
+                        Please Select BHK
                       </div>
                     </div>
 
 
-                    <div class="form-group col-12">
+                    <div class="form-group col-12  mt-3">
                       <p>Property Type</p>
                         <div class="btn-group" btnRadioGroup formControlName='PType'
                         [(ngModel)]="propertyView.PType">
@@ -44,55 +51,78 @@
                           name="PropType">{{ptype}}
                         </label>
                         </div>
+                        <div class="error-block" *ngIf="PType.invalid && nextClicked[0]">
+                          Please Select Property Type
+                        </div>
                       </div>
 
-                      <div class="form-group col-12">
+                      <div class="form-group col-12  mt-3">
                         <p>Furnishing Type</p>
                           <div class="btn-group" btnRadioGroup
                           [(ngModel)]="propertyView.FType"
-                          [ngModelOptions]="{standalone: true}"
+                          formControlName="FType"
                           name="FType">
                             <label
                             *ngFor="let ftype of furnishTypes"
                             class="btn btn-outline-primary mr-2"
                             [btnRadio]="ftype" tabindex="0" role="button" name="FurnishType">{{ftype}}</label>
                           </div>
+                          <div class="error-block" *ngIf="FType.invalid && nextClicked[0]">
+                            Please Select Furnishing Type
+                          </div>
                         </div>
 
-                    <div class="form-group col-12">
+                    <div class="form-group col-12  mt-3">
                     <label>in Building/Society/Project</label>
                     <input type="text" class="form-control"
                     formControlName="Name"
-                    [(ngModel)]="propertyView.Name"
+                    [(ngModel)]="propertyView.Name">
 
-                    >
-                    <!-- <span *ngIf="!propName.valid && propName.touched" class="error-block">
-                      <span *ngIf="propName.errors['required']">Please provide name</span>
-                      <span *ngIf="propName.errors['minlength']">Name must be atleast 5 char long</span>
-                    </span> -->
+                    <div *ngIf="Name.invalid && (Name.touched || nextClicked[0])" class="error-block">
+                      <span *ngIf="Name.errors?.['required']">Please provide a name</span>
+                      <span *ngIf="Name.errors?.['minlength']">Name must be at least 5 char long</span>
+                      <span *ngIf="Name.errors?.['maxlength']">Name must be at max 100 char long</span>
+
+                    </div>
                   </div>
 
-                  <div class="form-group col-12">
+                  <div class="form-group col-12  mt-3">
                     <label>City</label>
                     <input type="text"
                     class="form-control"
                     [(ngModel)]="propertyView.City"
-                    [ngModelOptions]="{standalone: true}"
-                    name="City">
+                     formControlName="City"
+                     >
+
+                    <div *ngIf="City.invalid && (City.touched || nextClicked[0])" class="error-block">
+                      <span *ngIf="City.errors?.['required']">Please provide a city</span>
+                      <span *ngIf="City.errors?.['minlength']">City must be at least 3 char long</span>
+                      <span *ngIf="City.errors?.['maxlength']">City must be at max 25 char long</span>
+
+                    </div>
                   </div>
 
-                  <div class="form-group col-12 mt-4">
+                  <div class="form-group col-12 mt-4 mb-5">
                       <button type="button" class="btn btn-primary btn-block float-end"
-                      (click)="selectTab(1)"npm cache clean --force >Next</button>
+                      (click)="selectTab(1,BasicInfo.valid)" >Next</button>
                   </div>
               </tab>
 
               <tab heading="Pricing and Area" formGroupName="PriceInfo">
                   <div class="form-group col-12">
-                    <label>Price (in USD)</label>
+                    <label *ngIf="SellRent.value==1 || SellRent.value==null">Price (in EGP)</label>
+                    <label *ngIf="SellRent.value==2">Rent (in EGP)</label>
                     <input type="text" class="form-control"
                     formControlName="Price"
                     [(ngModel)]="propertyView.Price">
+                    <div class="error-block" *ngIf="Price.invalid && (Price.touched || nextClicked[1] )">
+                      <span *ngIf="Price.errors?.['required']"> Please Enter
+                      <span *ngIf="SellRent.value == 2;else ShowPrice">Rent</span>
+                      <ng-template #ShowPrice>Price</ng-template>
+                      </span>
+                      <span *ngIf="Price.errors?.['min']">Price must be at least 1000 EGP or more</span>
+                      <span *ngIf="Price.errors?.['max']">Price must be at max 10000000 EGP</span>
+                    </div>
                   </div>
 
                   <div class="form-group col-12">
@@ -111,6 +141,13 @@
                     class="form-control"
                     [(ngModel)]="propertyView.BuiltArea"
                      formControlName="BuiltArea">
+
+                     <div *ngIf="BuiltArea.invalid && (BuiltArea.touched || nextClicked[1]  )" class="error-block">
+                      <span *ngIf="BuiltArea.errors?.['required']">Please provide the Built Area</span>
+                      <span *ngIf="BuiltArea.errors?.['min']">Built Area must be at least 100 Sqr Feet or more</span>
+                      <span *ngIf="BuiltArea.errors?.['max']">Built Area must be at max 1000000 Sqr Feet</span>
+
+                    </div>
                   </div>
 
                   <div class="form-group col-12">
@@ -120,52 +157,67 @@
 
                   <div class="form-group col-12 pt-4  btn-block">
                     <button type="button" class="btn btn-primary  float-end "
-                    (click)="selectTab(2)">Next</button>
+                    (click)="selectTab(2,PriceInfo.valid)" >Next</button>
 
                     <button type="button" class="btn btn-primary  float-end mx-2"
-                    (click)="selectTab(0)">Back</button>
+                    (click)="selectTab(0,true)">Back</button>
                   </div>
               </tab>
 
-              <tab heading="Address">
+              <tab heading="Address" formGroupName="AddressInfo">
 
                 <div class="form-group col-12">
-                  <label>Floor</label>
-                  <input type="text" class="form-control">
+                  <label>Floor Number</label>
+                  <input type="text" class="form-control"  formControlName="FloorNo">
+                  <div *ngIf="FloorNo.invalid && (FloorNo.touched || nextClicked[2] )" class="error-block">
+                    <span *ngIf="FloorNo.errors?.['required']">Please provide the Floor Number</span>
+                    <span *ngIf="FloorNo.errors?.['min']">Floor must be at least ground level (0) or higher</span>
+                    <span *ngIf="FloorNo.errors?.['max']">Floor must be at max 200 levels high</span>
+
+                  </div>
                 </div>
 
                 <div class="form-group col-12">
-                  <label>Total Floor</label>
-                  <input type="text" class="form-control">
+                  <label>Total Floors Number</label>
+                  <input type="text" class="form-control"  formControlName="TotalFloor">
                 </div>
 
                 <div class="form-group col-12">
                   <label>Address</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" formControlName="Address">
+                  <div *ngIf="Address.invalid && (Address.touched || nextClicked[2] )" class="error-block">
+                    <span *ngIf="Address.errors?.['required']">Please provide an Address</span>
+                    <span *ngIf="Address.errors?.['minlength']">Please enter a more detailed Address</span>
+                    <span *ngIf="Address.errors?.['maxlength']">Address must be at max 300 char long</span>
+
+                  </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label>Landmark</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control"  formControlName="LandMark">
                 </div>
 
                 <div class="form-group col-12 pt-4  btn-block">
                   <button type="button" class="btn btn-primary  float-end "
-                  (click)="selectTab(3)">Next</button>
+                  (click)="selectTab(3,AddressInfo.valid)">Next</button>
 
                   <button type="button" class="btn btn-primary  float-end mx-2"
-                  (click)="selectTab(1)">Back</button>
+                  (click)="selectTab(1,true)">Back</button>
                 </div>
               </tab>
 
-              <tab heading="Other Details">
+              <tab heading="Other Details" formGroupName="OtherInfo">
                 <div class="form-group col-12">
                   <p>Ready to Move</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div class="btn-group" btnRadioGroup  formControlName="RTM">
                     <label class="btn btn-outline-primary mr-2"
                     btnRadio=1 tabindex="0" role="button" name="RTM">Yes</label>
                     <label class="btn btn-outline-primary"
                     btnRadio=2  tabindex="0" role="button" name="RTM">No</label>
+                  </div>
+                  <div *ngIf="RTM.invalid && (RTM.touched || nextClicked[3] )" class="error-block">
+                    <span *ngIf="RTM.errors?.['required']">Ready to move?</span>
                   </div>
                 </div>
 
@@ -174,18 +226,21 @@
                   <label>Possession/Avaialble From</label>
                   <input type="text"
                   class="form-control"
+                  formControlName="PossessionOn"
                   bsDatepicker
                   [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'DD-MM-YYYY'}">
+                  <div *ngIf="PossessionOn.invalid && (PossessionOn.touched || nextClicked[3] )" class="error-block">
+                    <span *ngIf="PossessionOn.errors?.['required']" >Please provide a Possession/Availability Date</span>                  </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label>Age of Property</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" formControlName="AOP">
                 </div>
 
                 <div class="form-group col-12">
                   <p>Gated Community</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div class="btn-group" btnRadioGroup formControlName="Gated">
                     <label class="btn btn-outline-primary mr-2"
                     btnRadio=1 tabindex="0" role="button" name="Gated">Yes</label>
                     <label class="btn btn-outline-primary"
@@ -194,8 +249,8 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <p>Ready to Move</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <p>Main Enterance</p>
+                  <div class="btn-group" btnRadioGroup formControlName="MainEntrance">
                     <label class="btn btn-outline-primary mr-2"
                     btnRadio=1 tabindex="0" role="button" name="Entrance">East</label>
                     <label class="btn btn-outline-primary"
@@ -207,17 +262,18 @@
                   </div>
                 </div>
 
+
                 <div class="form-group col-12">
                   <label>Description</label>
-                  <textarea type="text" class="form-control" rows="6"></textarea>
+                  <textarea type="text" class="form-control" rows="6" formControlName="Description"></textarea>
                 </div>
 
                 <div class="form-group col-12 pb-4  btn-block  my-4">
                   <button type="button" class="btn btn-primary  float-end "
-                  (click)="selectTab(4)">Next</button>
+                  (click)="selectTab(4,OtherInfo.valid)">Next</button>
 
                   <button type="button" class="btn btn-primary  float-end mx-2"
-                  (click)="selectTab(2)">Back</button>
+                  (click)="selectTab(2,true)">Back</button>
                 </div>
               </tab>
 
@@ -228,11 +284,12 @@
                       This is under construction
                   </div>
                 </div>
+
                 <div class="form-group col-12 my-4">
                   <button type="submit" class="btn btn-success btn-block ms-lg-2 float-end">Save</button>
                   <button type="button" class="btn btn-primary btn-block ms-lg-2  float-end"
-                  (click)="selectTab(3)">Back</button>
-                  <button type="reset" (click)="selectTab(0)" class="btn btn-danger btn-block float-end">Cancel</button>
+                  (click)="selectTab(3,true)">Back</button>
+                  <button type="reset" (click)="onCancel()" class="btn btn-danger btn-block float-end">Cancel</button>
 
                 </div>
               </tab>
