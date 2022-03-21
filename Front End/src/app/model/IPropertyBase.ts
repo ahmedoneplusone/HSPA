@@ -5,7 +5,7 @@ export interface IPropertyBase{
   Name:string;
   PType:string;
   FType:string;
-  Price:string;
+  Price:number;
   BHK:number;
   BuiltArea:number;
   City:string;

@@ -1,8 +1,11 @@
+import { AlertifyService } from './../../services/alertify.service';
+import { HousingService } from './../../services/housing.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { IPropertyBase } from '../../model/IPropertyBase';
+import { Property } from 'src/app/model/property';
 
 
 @Component({
@@ -16,6 +19,8 @@ export class AddPropertyComponent implements OnInit {
 
   addPropertyForm :FormGroup;
   nextClicked = [false,false,false,false,true];
+  property = new Property();
+
   // Will come from masters
   propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex']
   furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished']
@@ -34,7 +39,11 @@ export class AddPropertyComponent implements OnInit {
 };
 
 
-  constructor(private router: Router,private fb:FormBuilder) { }
+  constructor(
+    private router: Router,
+    private fb:FormBuilder,
+    private HousingService:HousingService,
+    private AlertifyService:AlertifyService) { }
 
   ngOnInit() {
     this.CreateAddPropertyForm();
@@ -187,17 +196,54 @@ export class AddPropertyComponent implements OnInit {
 
   onCancel(){
     window.location.reload()
-
   }
   onSubmit() {
-    let checker =  this.nextClicked.every(v => v === true);
-    if(this.allTabsValid() && checker){
-    console.log('Congrats, form Submitted');
-    console.log(this.addPropertyForm);
+
+    if(this.allTabsValid()){
+
+      this.mapProperty();
+      this.HousingService.addProperty(this.property);
+      this.AlertifyService.success('Congrats, your property listed successfully');
+      console.log(this.addPropertyForm);
+      console.log(this.SellRent.value);
+        if(this.SellRent.value === "2"){
+          this.router.navigate(['rent-property']);
+        }else{
+          this.router.navigate(['/']);
+        }
+
     }else{
-      console.log('Please review the form and provide valid entries')
+      this.AlertifyService.error('Please review the form and provide valid entries')
     }
+
   }
+
+  mapProperty(): void {
+    this.property.ID = this.HousingService.newPropID();
+    this.property.SellRent = +this.SellRent.value;
+    this.property.BHK = this.BHK.value;
+    this.property.PType = this.PType.value;
+    this.property.Name = this.Name.value;
+    this.property.City = this.City.value;
+    this.property.FType = this.FType.value;
+    this.property.Price = this.Price.value;
+    this.property.Security = this.Security.value;
+    this.property.Maintenance = this.Maintenance.value;
+    this.property.BuiltArea = this.BuiltArea.value;
+    this.property.CarpetArea = this.CarpetArea.value;
+    this.property.FloorNo = this.FloorNo.value;
+    this.property.TotalFloor = this.TotalFloor.value;
+    this.property.Address = this.Address.value;
+    this.property.Address2 = this.LandMark.value;
+    this.property.RTM = this.RTM.value;
+    this.property.AOP = this.AOP.value;
+    this.property.Gated = this.Gated.value;
+    this.property.MainEntrance = this.MainEntrance.value;
+    this.property.Possession = this.PossessionOn.value;
+    this.property.Description = this.Description.value;
+    this.property.PostedOn = new Date().toString();
+  }
+
 
   allTabsValid(): boolean{
     if(this.BasicInfo.invalid){
@@ -226,7 +272,9 @@ export class AddPropertyComponent implements OnInit {
   selectTab(tabId: number, IsCurrentTabValid: boolean) {
     console.log(IsCurrentTabValid)
     console.log(this.addPropertyForm)
+
     this.nextClicked [tabId-1] = true;
+
     console.log(this.nextClicked)
     if(IsCurrentTabValid){
     this.formTabs.tabs[tabId].active = true;
