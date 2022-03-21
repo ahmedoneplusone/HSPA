@@ -1,6 +1,6 @@
 [
   {
-    "Id":1,
+    "ID":1,
     "SellRent":2,
     "Name":"Birla House",
     "PType":"House",
@@ -28,7 +28,7 @@
   },
 
   {
-    "Id":2,
+    "ID":2,
     "SellRent":2,
     "Name":"Erose Flat",
     "PType":"Aparment",
@@ -55,7 +55,7 @@
     "PostedOn":"01-Jan-2019"
   },
   {
-    "Id":1,
+    "ID":10,
     "SellRent":1,
     "Name":"Gun Hill",
     "PType":"House",
@@ -83,7 +83,7 @@
   },
 
   {
-    "Id":4,
+    "ID":4,
     "SellRent":1,
     "Name":"Macro Home",
     "PType":"Duplex",
@@ -110,7 +110,7 @@
     "PostedOn":"01-Jan-2019"
   },
   {
-    "Id":5,
+    "ID":5,
     "SellRent":1,
     "Name":"Saint Church Villa",
     "PType":"House",
@@ -138,7 +138,7 @@
   },
 
   {
-    "Id":6,
+    "ID":6,
     "SellRent":1,
     "Name":"",
     "PType":"Duplex",

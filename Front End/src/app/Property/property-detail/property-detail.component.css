@@ -1,0 +1,12 @@
+.card{
+  min-height: 600px;
+}
+.card-body{
+  margin-top: -10px;
+
+}
+.card img{
+
+  padding:10px ;
+  min-height: 300px;
+}
