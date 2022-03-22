@@ -14,16 +14,17 @@ export class HousingService {
   getProperty(id:number){
     return this.getAllProperties().pipe(
       map(propertyArray=>{
+        // throw new Error('Some Error');
         return propertyArray.find(p=>p.ID === id);
       })
     );
 
   }
 
-  getAllProperties(SellRent?:number): Observable<IProperty[]>{
+  getAllProperties(SellRent?:number): Observable<Property[]>{
     return this.http.get('data/properties.json').pipe(
       map(data=>{
-        const propertiesArray: Array<IProperty> = [];
+        const propertiesArray: Array<Property> = [];
         const localProps = JSON.parse(localStorage.getItem('newProp'));
         if(localProps){
           for(const id in localProps){
