@@ -34,28 +34,28 @@ export class PropertyDetailComponent implements OnInit {
 
   this.galleryImages = [
     {
-      small: 'assets/Images/prop-1.jfif',
-      medium: 'assets/Images/prop-1.jfif',
-      big: 'assets/Images/prop-1.jfif'
+      small: 'assets/Images/Prop-1.jfif',
+      medium: 'assets/Images/Prop-1.jfif',
+      big: 'assets/Images/Prop-1.jfif'
     },
     {
-      small: 'assets/Images/prop-2.jfif',
-      medium: 'assets/Images/prop-2.jfif',
-      big: 'assets/Images/prop-2.jfif'
+      small: 'assets/Images/Prop-2.jfif',
+      medium: 'assets/Images/Prop-2.jfif',
+      big: 'assets/Images/Prop-2.jfif'
     },
     {
-      small: 'assets/Images/prop-3.jfif',
-      medium: 'assets/Images/prop-3.jfif',
-      big: 'assets/Images/prop-3.jfif'
+      small: 'assets/Images/Prop-3.jfif',
+      medium: 'assets/Images/Prop-3.jfif',
+      big: 'assets/Images/Prop-3.jfif'
     },{
-      small: 'assets/Images/prop-4.jfif',
-      medium:  'assets/Images/prop-4.jfif',
-      big:  'assets/Images/prop-4.jfif'
+      small: 'assets/Images/Prop-4.jfif',
+      medium:  'assets/Images/Prop-4.jfif',
+      big:  'assets/Images/Prop-4.jfif'
     },
     {
-      small: 'assets/Images/prop-5.jfif',
-      medium: 'assets/Images/prop-5.jfif',
-      big: 'assets/Images/prop-5.jfif'
+      small: 'assets/Images/Prop-5.jfif',
+      medium: 'assets/Images/Prop-5.jfif',
+      big: 'assets/Images/Prop-5.jfif'
     }
   ];
     this.propertyid = Number(this.route.snapshot.params['id']);
