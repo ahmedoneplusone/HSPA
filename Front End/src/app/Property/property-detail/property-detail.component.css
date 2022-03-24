@@ -12,3 +12,9 @@
 }
 
 .ngx-gallery { display: inline-block; margin-bottom: 20px; }
+.ngx-gallery-layout {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+}
