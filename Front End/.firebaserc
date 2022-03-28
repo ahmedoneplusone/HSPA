@@ -1,5 +1,14 @@
 {
+  "targets": {
+    "hspa-ug": {
+      "hosting": {
+        "HSPA": [
+          "hspa-ug"
+        ]
+      }
+    }
+  },
   "projects": {
-    "default": "hspa-ang-mine"
+    "default": "hspa-ug"
   }
 }
