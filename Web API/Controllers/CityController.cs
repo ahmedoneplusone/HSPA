@@ -10,13 +10,13 @@ namespace HSPA_API.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly IMain repo;
+        private readonly IMain main;
 
         private readonly IMapper mapper;
 
-        public CityController(IMain repo,IMapper mapper)
+        public CityController(IMain main,IMapper mapper)
         {
-            this.repo = repo;
+            this.main = main;
             this.mapper = mapper;
         }
 
@@ -24,7 +24,7 @@ namespace HSPA_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCities()
         {
-            var Cities = await repo.CityRepository.GetCitiesAsync();
+            var Cities = await main.CityRepository.GetCitiesAsync();
 
             var citiesDto = mapper.Map<IEnumerable<CityDto>>(Cities);
 
@@ -34,26 +34,56 @@ namespace HSPA_API.Controllers
         [HttpPost("post")]
         public async Task<IActionResult> AddCity(CityDto cityDto)
         {
-            //var city = new City { 
-            //Name = cityDto.Name,
-            //LastUpdatedBy = 1,
-            //LastUpdatedOn = DateTime.Now
-            //};
 
             var city = mapper.Map<City>(cityDto);
             city.LastUpdatedBy = 1;
             city.LastUpdatedOn = DateTime.Now;
 
-            repo.CityRepository.AddCity(city);
-            await repo.SaveAsync();
+            main.CityRepository.AddCity(city);
+            await main.SaveAsync();
             return StatusCode(201);
+        }
+
+        [HttpPut("updateCityName/{id}")]
+        public async Task<IActionResult> UpdateCityName(int id, CityUpdateDto cityDto)
+        {
+            var cityFromDB = await main.CityRepository.FindCity(id);
+            cityFromDB.LastUpdatedBy = 1;
+            cityFromDB.LastUpdatedOn = DateTime.Now;
+
+            mapper.Map(cityDto, cityFromDB);
+            await main.SaveAsync();
+            return StatusCode(200);
+
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCity(int id,CityDto cityDto)
+        {
+                if (id != cityDto.CityID)
+                    return BadRequest("Couldn't Update");
+
+                var cityFromDB = await main.CityRepository.FindCity(id);
+
+                if (cityFromDB == null)
+                    return BadRequest("Couldn't Update");
+
+                cityFromDB.LastUpdatedBy = 1;
+                cityFromDB.LastUpdatedOn = DateTime.Now;
+
+                mapper.Map(cityDto, cityFromDB);
+
+                throw new Exception("Some unknown error occured");
+
+                await main.SaveAsync();
+                return StatusCode(200);
         }
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteCity(int id)
         {
-            repo.CityRepository.DeleteCity(id);
-            await repo.SaveAsync();
+            main.CityRepository.DeleteCity(id);
+            await main.SaveAsync();
             return Ok(id);
         }
 

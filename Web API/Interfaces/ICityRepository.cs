@@ -6,7 +6,10 @@ namespace HSPA_API.Interfaces
     {
         Task<IEnumerable<City>> GetCitiesAsync();
         void AddCity(City city);
+
         void DeleteCity(int CityID);
+
+        Task<City> FindCity (int CityID);
 
     }
 }
