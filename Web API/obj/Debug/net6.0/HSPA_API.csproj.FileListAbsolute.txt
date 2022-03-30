@@ -97,3 +97,7 @@ C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\obj\Debug\net6.0\HSPA_API.genruntimeco
 C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\obj\Debug\net6.0\ref\HSPA_API.dll
 C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ahmed.wagdi\Desktop\HSPA\Web API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
