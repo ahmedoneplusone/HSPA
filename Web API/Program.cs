@@ -1,5 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+using HSPA_API.Data;
+using HSPA_API.Helpers;
+using HSPA_API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
+
+var builder = WebApplication.CreateBuilder(args);
+var configValue = builder.Configuration.GetConnectionString("Default");
+Console.WriteLine(configValue);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -7,6 +14,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+
+builder.Services.AddDbContext<HSPA_DBContext>(options => options.UseSqlServer(configValue));
+builder.Services.AddScoped<IMain, Main>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
 
 var app = builder.Build();
 
