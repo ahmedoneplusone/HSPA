@@ -1,8 +1,10 @@
 using HSPA_API.Data;
+using HSPA_API.Extensions;
 using HSPA_API.Helpers;
 using HSPA_API.Interfaces;
+using HSPA_API.Middlewares;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var configValue = builder.Configuration.GetConnectionString("Default");
@@ -19,15 +21,11 @@ builder.Services.AddDbContext<HSPA_DBContext>(options => options.UseSqlServer(co
 builder.Services.AddScoped<IMain, Main>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//app.ConfigureExceptionHandler();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
