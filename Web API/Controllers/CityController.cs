@@ -73,6 +73,7 @@ namespace HSPA_API.Controllers
 
                 mapper.Map(cityDto, cityFromDB);
 
+            throw new Exception("Unknown Error Occured");
                 await main.SaveAsync();
                 return StatusCode(200);
         }
