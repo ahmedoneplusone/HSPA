@@ -3,6 +3,8 @@
     public interface IMain
     {
         ICityRepository CityRepository { get; }
+        IUserRepository UserRepository { get; }
+
         Task<bool> SaveAsync();
     }
 }
