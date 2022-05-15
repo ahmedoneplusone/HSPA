@@ -67,11 +67,11 @@ node_modules/
 Front End/.gitignore
 .gitignore
 .gitignore
-Web API/.vs/HSPA_API/DesignTimeBuild/.dtbcache.v2
-Web API/.vs/HSPA_API/DesignTimeBuild/.dtbcache.v2
-Web API/.vs/HSPA_API/v17/.suo
-Web API/.vs/HSPA_API/DesignTimeBuild/.dtbcache.v2
-Web API/.vs/HSPA_API/v17/.futdcache.v1
+WebAPI/.vs/HSPA_API/DesignTimeBuild/.dtbcache.v2
+WebAPI/.vs/HSPA_API/DesignTimeBuild/.dtbcache.v2
+WebAPI/.vs/HSPA_API/v17/.suo
+WebAPI/.vs/HSPA_API/DesignTimeBuild/.dtbcache.v2
+WebAPI/.vs/HSPA_API/v17/.futdcache.v1
 Front End/.firebase/hosting.ZGlzdFxoc3Bh.cache
 appsettings.json
-Web API/bin/Debug/net6.0/appsettings.json
+WebAPI/bin/Debug/net6.0/appsettings.json
