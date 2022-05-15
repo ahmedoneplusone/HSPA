@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "IjWNACfnZ+OX20JMuEAcDoKoIrXc092JIAl2oDHXT4c=",
+  "Source": "HSPA_API",
+  "BasePath": "_content/HSPA_API",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
