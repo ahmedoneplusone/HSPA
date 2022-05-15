@@ -36,7 +36,19 @@ namespace HSPA_API.Controllers
             return Ok(loginres);
         }
 
-        private string CreateJWT(User user)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(LoginReqDto loginReq)
+        { 
+            if(await main.UserRepository.UserAlreadyExists(loginReq.Username))
+            {
+                return BadRequest("User already exists");
+            }
+            main.UserRepository.Register(loginReq.Username, loginReq.Password);
+            await main.SaveAsync();
+            return StatusCode(201);
+        }
+
+            private string CreateJWT(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Key").Value));
 

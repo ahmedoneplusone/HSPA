@@ -4,6 +4,7 @@ using HSPA_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HSPA_API.Migrations
 {
     [DbContext(typeof(HSPA_DBContext))]
-    partial class HSPA_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20220515115211_AddPasswordEncryotion")]
+    partial class AddPasswordEncryotion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

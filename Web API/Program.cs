@@ -9,6 +9,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.ConfigureHostConfiguration(webBuilder =>
+{
+    webBuilder.AddEnvironmentVariables(prefix:"HSPA_");
+});
+
 var configValue = builder.Configuration.GetConnectionString("Default");
 Console.WriteLine(configValue);
 // Add services to the container.
@@ -45,7 +50,6 @@ var app = builder.Build();
 app.ConfigureBuiltinExceptionHandler();
 
 //app.UseMiddleware<ExceptionMiddleware>();
-
 
 app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
