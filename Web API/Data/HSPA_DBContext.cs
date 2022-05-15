@@ -12,6 +12,6 @@ namespace HSPA_API.Data
         }
 
         public DbSet<City> Cities { get; set; }
-
+        public DbSet<User> Users { get; set; }
     }
 }

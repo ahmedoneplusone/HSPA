@@ -2,13 +2,13 @@
 using HSPA_API.Dtos;
 using HSPA_API.Interfaces;
 using HSPA_API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
  
 namespace HSPA_API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CityController : ControllerBase
+    [Authorize]
+    public class CityController : BaseController
     {
         private readonly IMain main;
 
@@ -22,6 +22,7 @@ namespace HSPA_API.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCities()
         {
             var Cities = await main.CityRepository.GetCitiesAsync();

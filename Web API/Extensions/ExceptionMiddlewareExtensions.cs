@@ -1,12 +1,17 @@
 ﻿using System.Net;
+using HSPA_API.Middlewares;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace HSPA_API.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {
-        public static void ConfigureExceptionHandler (this WebApplication app)
+        public static void ConfigureExceptionHandler(this WebApplication app)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
+        }
+        public static void ConfigureBuiltinExceptionHandler(this WebApplication app)
+            {
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
