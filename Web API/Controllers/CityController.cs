@@ -21,7 +21,7 @@ namespace HSPA_API.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet ("Cities")]
         [AllowAnonymous]
         public async Task<IActionResult> GetCities()
         {
