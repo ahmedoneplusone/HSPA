@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Omhif1WLLXrBsqw1Fv2FsE+9jhlHtU1ZvYPvln47J7xcPsqb7ibID8w1pNcO2IBYwgrjkUUcFwERXJ5tmwHkAg==",
+  "dgSpecHash": "LhweddADzLtOMgYyMJzFCyfg6xCaR6ToaijFKPhOOSKYXmJIGfKqlY8zO1C5gp4Kkd/Cw+FF2ZttSq2lMrXRxw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\Web API\\HSPA_API.csproj",
+  "projectFilePath": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\webapi\\HSPA_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ahmed.wagdi\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\ahmed.wagdi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

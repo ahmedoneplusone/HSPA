@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\Web API\\HSPA_API.csproj": {}
+    "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\webapi\\HSPA_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\Web API\\HSPA_API.csproj": {
+    "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\webapi\\HSPA_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\Web API\\HSPA_API.csproj",
+        "projectUniqueName": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\webapi\\HSPA_API.csproj",
         "projectName": "HSPA_API",
-        "projectPath": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\Web API\\HSPA_API.csproj",
+        "projectPath": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\webapi\\HSPA_API.csproj",
         "packagesPath": "C:\\Users\\ahmed.wagdi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\Web API\\obj\\",
+        "outputPath": "C:\\Users\\ahmed.wagdi\\Desktop\\HSPA\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed.wagdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
